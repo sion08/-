@@ -1,7 +1,6 @@
-C
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h> // 윈도우 콘솔 인코딩 설정을 위해 추가
 
 // 퀴즈 데이터를 담을 구조체 정의
 typedef struct {
@@ -17,6 +16,9 @@ typedef struct {
 } Stage;
 
 int main() {
+    // 💡 윈도우 콘솔창의 출력 인코딩을 UTF-8로 변경 (외계어 깨짐 방지)
+    SetConsoleOutputCP(65001);
+
     // 게임 상태 변수 초기화
     int initial_funds = 1000;
     int funds = initial_funds;
@@ -60,7 +62,7 @@ int main() {
     printf("⚠️ 주의: 최종 판매 허가를 받으려면 안전성 점수가\n최소 %d점 이상이어야 합니다!\n\n", required_safety_score);
     printf("(초기 정부 지원금: 1,000만 원)\n");
     printf("==================================================\n");
-    printf("시작하려면 엔터(Enter) 키를 누르세요...\n");
+    printf("시작하려면 아무 키나 누르고 엔터(Enter)를 치세요...\n");
     getchar(); // 사용자 입력 대기
 
     // 1단계: 퀴즈 진행
@@ -98,7 +100,7 @@ int main() {
         printf("필요 자금: %d만 원\n", stages[i].cost);
         printf("--------------------------------------------------\n");
 
-        printf(">> 투자를 진행하려면 1을 입력하세요: ");
+        printf(">> 투자를 진행하려면 1을 입력하고 엔터를 누르세요: ");
         scanf("%d", &choice);
 
         // 자금 부족 확인
@@ -132,7 +134,7 @@ int main() {
     printf("혁신적인 신약이 시장에 출시되었습니다!\n\n");
     printf("■ 초기 지원금: %d만 원\n", initial_funds);
     printf("■ 퀴즈로 번 연구비: %d만 원\n", earned_funds);
-    printf("■ 남은 연구 자금: %d만 원\n\n", funds);
+    printf("■ 남은 연구 자금: %d만 원\n\n");
     printf("📈 평가된 제약 회사 가치: %d만 원\n", company_value);
     printf("🌍 사회적 기여도 등급: S등급 (수많은 생명을 구함)\n");
     printf("==================================================\n");
